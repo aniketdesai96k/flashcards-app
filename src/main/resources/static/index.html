@@ -301,27 +301,27 @@
     let timer = 20;
     let timerInterval = null;
     let currentUser = null;
-    function showScreen(id) {
+    function showScreen(id){
         document.getElementById("loginScreen")
-            .classList.remove("active");
+        .classList.remove("active");
 
         document.getElementById("signupScreen")
-            .classList.remove("active");
+        .classList.remove("active");
 
         document.getElementById("homeScreen")
-            .classList.remove("active");
+        .classList.remove("active");
 
         document.getElementById("addScreen")
-            .classList.remove("active");
+        .classList.remove("active");
 
         document.getElementById("savedScreen")
-            .classList.remove("active");
+        .classList.remove("active");
 
         document.getElementById("practiceScreen")
-            .classList.remove("active");
+        .classList.remove("active");
 
         document.getElementById(id)
-            .classList.add("active");
+        .classList.add("active");
     }
 
     function showAdd(){
@@ -436,36 +436,36 @@
     }
     function loadWords(){
         fetch(`${BASE_URL}/words/user/${currentUser.id}`)
-            .then(res => res.json())
-            .then(data => {
-                let html = "";
-                data.forEach(word => {
-                    html += `
-                        <div class="word-box">
-                            <b>Front:</b> ${word.front}<br>
-                            <b>Back:</b> ${word.back}
-                        </div>
+        .then(res => res.json())
+        .then(data => {
+            let html = "";
+            data.forEach(word => {
+                html += `
+                    <div class="word-box">
+                        <b>Front:</b> ${word.front}<br>
+                        <b>Back:</b> ${word.back}
+                    </div>
                     `;
-                });
-                document.getElementById("wordList").innerHTML = html;
             });
+                document.getElementById("wordList").innerHTML = html;
+        });
     }
 
     function startPractice(){
         fetch(`${BASE_URL}/words/user/${currentUser.id}`)
-            .then(res => res.json())
-            .then(data => {
-                practiceWords = [...data];
-                showScreen("practiceScreen");
-                nextWord();
-            });
+        .then(res => res.json())
+        .then(data => {
+            practiceWords = [...data];
+            showScreen("practiceScreen");
+            nextWord();
+        });
     }
 
     function nextWord(){
         if (practiceWords.length === 0) {
             clearInterval(timerInterval);
             document.getElementById("card")
-                .classList.remove("flipped");
+            .classList.remove("flipped");
             document.getElementById("cardFront").innerText = "🎉 Practice Complete";
             document.getElementById("cardBack").innerText = "";
             document.getElementById("timerBar").style.width = "0%";
@@ -475,7 +475,7 @@
         const randomIndex = Math.floor(Math.random() * practiceWords.length);
         currentWord = practiceWords[randomIndex];
         document.getElementById("card")
-            .classList.remove("flipped");
+        .classList.remove("flipped");
         document.getElementById("cardFront").innerText = currentWord.front;
         document.getElementById("cardBack").innerText = currentWord.back;
         startCardTimer();
@@ -484,7 +484,7 @@
     function flipCard(){
         if (!currentWord) return;
         document.getElementById("card")
-            .classList.toggle("flipped");
+        .classList.toggle("flipped");
     }
 
     function markCorrect(){
@@ -507,7 +507,7 @@
         clearInterval(timerInterval);
         backHome();
         document.getElementById("card")
-            .classList.remove("flipped");
+        .classList.remove("flipped");
         document.getElementById("cardFront").innerText = "Click Start Practice";
         document.getElementById("cardBack").innerText = "";
         document.getElementById("timerBar").style.width = "100%";

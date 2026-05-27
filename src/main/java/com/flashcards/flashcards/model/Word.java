@@ -2,7 +2,7 @@ package com.flashcards.flashcards.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Word {
+public class Word{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
