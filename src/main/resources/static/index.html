@@ -1,133 +1,87 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
     <title>Flashcards App</title>
-
     <style>
 
-        body {
-
+        body{
             font-family: Arial, sans-serif;
-
             background: #0f172a;
-
             margin: 0;
             padding: 0;
-
             display: flex;
-
             justify-content: center;
-
             align-items: center;
-
             min-height: 100vh;
-
             color: white;
         }
-
-        .app-container {
-
+        .app-container{
             width: 420px;
-
             background: #111827;
-
             padding: 25px;
-
             border-radius: 16px;
-
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-
             text-align: center;
         }
 
-        h1, h2, h3 {
-
+        h1, h2, h3{
             color: white;
         }
 
-        button {
-
+        button{
             padding: 10px 14px;
-
             margin: 6px;
-
             border: none;
-
             border-radius: 10px;
-
             cursor: pointer;
-
             background: #2563eb;
-
             color: white;
-
             font-weight: bold;
-
             transition: 0.2s;
         }
 
-        button:hover {
-
+        button:hover{
             background: #1d4ed8;
         }
 
-        .correct-btn {
-
+        .correct-btn{
             background: #16a34a;
         }
 
-        .correct-btn:hover {
-
+        .correct-btn:hover{
             background: #15803d;
         }
 
-        .wrong-btn {
-
+        .wrong-btn{
             background: #dc2626;
         }
 
-        .wrong-btn:hover {
-
+        .wrong-btn:hover{
             background: #b91c1c;
         }
 
-        input {
-
+        input{
             width: 90%;
-
             padding: 10px;
-
             margin: 8px 0;
-
             border-radius: 10px;
-
             border: 1px solid #374151;
-
             background: #1f2937;
-
             color: white;
         }
 
-        .screen {
-
+        .screen{
             display: none;
         }
 
-        .active {
-
+        .active{
             display: block;
         }
 
-        .word-box {
-
+        .word-box{
             background: #1f2937;
-
             margin: 10px 0;
-
             padding: 12px;
-
             border-radius: 10px;
 
             text-align: left;
@@ -135,122 +89,80 @@
 
         /* TIMER BAR */
 
-        .timer-container {
-
+        .timer-container{
             width: 100%;
-
             height: 12px;
-
             background: #374151;
-
             border-radius: 10px;
-
             overflow: hidden;
-
             margin-bottom: 20px;
         }
 
-        #timerBar {
-
+        #timerBar{
             width: 100%;
-
             height: 100%;
-
             background: #22c55e;
-
             transition: width 1s linear;
         }
 
         /* FLIP CARD */
 
-        .card {
-
+        .card{
             width: 100%;
-
             height: 220px;
-
             perspective: 1000px;
-
             margin: 20px 0;
-
             cursor: pointer;
         }
 
-        .card-inner {
-
+        .card-inner{
             width: 100%;
             height: 100%;
-
             position: relative;
-
             transition: transform 0.6s;
-
             transform-style: preserve-3d;
         }
 
-        .card.flipped .card-inner {
-
+        .card.flipped .card-inner{
             transform: rotateY(180deg);
         }
 
         .card-front,
-        .card-back {
-
+        .card-back{
             position: absolute;
-
             width: 100%;
             height: 100%;
-
             border-radius: 14px;
-
             display: flex;
-
             align-items: center;
             justify-content: center;
-
             font-size: 28px;
-
             padding: 20px;
-
             box-sizing: border-box;
-
             backface-visibility: hidden;
-
             background: linear-gradient(135deg, #1f2937, #111827);
-
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-
             text-align: center;
         }
 
-        .card-back {
-
+        .card-back{
             transform: rotateY(180deg);
         }
-
     </style>
-
 </head>
-
 <body>
-
 <div class="app-container">
-
     <h1>Flashcards</h1>
 
     <!-- LOGIN SCREEN -->
-
     <div id="loginScreen" class="screen active">
-
         <h2>Login</h2>
-
         <input id="loginUsername"
                placeholder="Username">
 
         <input id="loginPassword"
                type="password"
                placeholder="Password">
-
         <br>
 
         <button onclick="login()">
@@ -266,16 +178,12 @@
     <!-- SIGNUP SCREEN -->
 
     <div id="signupScreen" class="screen">
-
         <h2>Signup</h2>
-
         <input id="signupUsername"
                placeholder="Username">
-
         <input id="signupPassword"
                type="password"
                placeholder="Password">
-
         <br>
 
         <button onclick="signup()">
@@ -285,15 +193,12 @@
         <button onclick="showLogin()">
             Back
         </button>
-
     </div>
 
     <!-- HOME SCREEN -->
 
     <div id="homeScreen" class="screen">
-
         <h2>Welcome</h2>
-
         <button onclick="showAdd()">
             Add Flashcard
         </button>
@@ -311,21 +216,16 @@
         <button onclick="logout()">
             Logout
         </button>
-
     </div>
 
     <!-- ADD SCREEN -->
 
     <div id="addScreen" class="screen">
-
         <h3>Add Flashcard</h3>
-
         <input id="frontInput"
                placeholder="Front side">
-
         <input id="backInput"
                placeholder="Back side">
-
         <br>
 
         <button onclick="addWord()">
@@ -335,33 +235,24 @@
         <button onclick="backHome()">
             Back
         </button>
-
     </div>
 
     <!-- SAVED SCREEN -->
 
     <div id="savedScreen" class="screen">
-
         <h3>Saved Flashcards</h3>
-
         <div id="wordList"></div>
-
         <button onclick="backHome()">
             Back
         </button>
-
     </div>
 
     <!-- PRACTICE SCREEN -->
 
     <div id="practiceScreen" class="screen">
-
         <!-- TIMER -->
-
         <div class="timer-container">
-
             <div id="timerBar"></div>
-
         </div>
 
         <!-- FLASHCARD -->
@@ -369,79 +260,48 @@
         <div class="card"
              id="card"
              onclick="flipCard()">
-
             <div class="card-inner">
-
                 <div class="card-front"
                      id="cardFront">
-
                     Click Start Practice
-
                 </div>
 
                 <div class="card-back"
                      id="cardBack">
-
                 </div>
-
             </div>
-
         </div>
 
         <!-- BUTTONS -->
 
         <button class="correct-btn"
                 onclick="markCorrect()">
-
             ✔ Correct
-
         </button>
 
         <button class="wrong-btn"
                 onclick="markWrong()">
-
             ✖ Wrong
-
         </button>
 
         <button onclick="skipWord()">
-
             ⏭ Skip
-
         </button>
 
         <button onclick="endPractice()">
-
             Finish
-
         </button>
-
     </div>
-
 </div>
-
 <script>
 
-    // ================= BASE URL =================
-
     const BASE_URL = window.location.origin;
-
-    // ================= GLOBAL VARIABLES =================
-
     let currentWord = null;
-
     let practiceWords = [];
-
     let timer = 20;
-
     let timerInterval = null;
-
     let currentUser = null;
-
-    // ================= SCREEN NAVIGATION =================
-
     function showScreen(id) {
-
         document.getElementById("loginScreen")
             .classList.remove("active");
 
@@ -464,347 +324,195 @@
             .classList.add("active");
     }
 
-    function showAdd() {
-
+    function showAdd(){
         showScreen("addScreen");
     }
 
-    function showSaved() {
-
+    function showSaved(){
         showScreen("savedScreen");
-
         loadWords();
     }
 
-    function showSignup() {
-
+    function showSignup(){
         showScreen("signupScreen");
     }
 
-    function showLogin() {
-
+    function showLogin(){
         document.getElementById("loginUsername").value = "";
-
         document.getElementById("loginPassword").value = "";
-
         showScreen("loginScreen");
     }
 
-    function backHome() {
-
+    function backHome(){
         showScreen("homeScreen");
     }
 
-    // ================= LOGOUT =================
-
-    function logout() {
-
+    function logout(){
         currentUser = null;
-
         alert("Logged out");
-
         showLogin();
     }
 
-    // ================= SIGNUP =================
-
-    function signup() {
-
+    function signup(){
         fetch(`${BASE_URL}/users/signup`, {
-
             method: "POST",
-
             headers: {
                 "Content-Type": "application/json"
             },
 
             body: JSON.stringify({
-
-                username:
-                    document.getElementById("signupUsername").value,
-
-                password:
-                    document.getElementById("signupPassword").value
+                username: document.getElementById("signupUsername").value,
+                password: document.getElementById("signupPassword").value
             })
 
         })
         .then(res => res.json())
-
         .then(data => {
-
             alert("Account created!");
-
             showLogin();
         });
     }
-
-    // ================= LOGIN =================
-
-    function login() {
-
+    function login(){
         fetch(`${BASE_URL}/users/login`, {
-
             method: "POST",
-
             headers: {
                 "Content-Type": "application/json"
             },
-
             body: JSON.stringify({
-
-                username:
-                    document.getElementById("loginUsername").value,
-
-                password:
-                    document.getElementById("loginPassword").value
+                username: document.getElementById("loginUsername").value,
+                password: document.getElementById("loginPassword").value
             })
 
         })
         .then(res => res.json())
-
         .then(data => {
-
-            if (data && data.id) {
-
+            if (data && data.id){
                 currentUser = data;
-
                 alert("Login successful!");
-
                 showScreen("homeScreen");
-
-            } else {
-
+            } else{
                 alert("Invalid username or password");
             }
         });
     }
-
-    // ================= TIMER =================
-
-    function startCardTimer() {
-
+    function startCardTimer(){
         clearInterval(timerInterval);
-
         timer = 20;
-
-        const timerBar =
-            document.getElementById("timerBar");
-
+        const timerBar = document.getElementById("timerBar");
         timerBar.style.width = "100%";
-
         timerBar.style.background = "#22c55e";
-
         timerInterval = setInterval(() => {
-
             timer--;
-
-            timerBar.style.width =
-                (timer / 20) * 100 + "%";
-
-            if (timer <= 5) {
-
-                timerBar.style.background =
-                    "#dc2626";
+            timerBar.style.width = (timer / 20) * 100 + "%";
+            if(timer <= 5){
+                timerBar.style.background = "#dc2626";
             }
 
-            if (timer <= 0) {
-
+            if (timer <= 0){
                 clearInterval(timerInterval);
-
                 nextWord();
             }
-
         }, 1000);
     }
 
-    // ================= ADD FLASHCARD =================
-
-    function addWord() {
-
+    function addWord(){
         fetch(`${BASE_URL}/words/${currentUser.id}`, {
-
             method: "POST",
-
             headers: {
                 "Content-Type": "application/json"
             },
 
             body: JSON.stringify({
-
-                front:
-                    document.getElementById("frontInput").value,
-
-                back:
-                    document.getElementById("backInput").value
+                front: document.getElementById("frontInput").value,
+                back: document.getElementById("backInput").value
             })
-
         })
         .then(() => {
-
             alert("Flashcard added!");
-
             document.getElementById("frontInput").value = "";
-
             document.getElementById("backInput").value = "";
-
             backHome();
         });
     }
-
-    // ================= LOAD FLASHCARDS =================
-
-    function loadWords() {
-
+    function loadWords(){
         fetch(`${BASE_URL}/words/user/${currentUser.id}`)
-
             .then(res => res.json())
-
             .then(data => {
-
                 let html = "";
-
                 data.forEach(word => {
-
                     html += `
                         <div class="word-box">
-
                             <b>Front:</b> ${word.front}<br>
-
                             <b>Back:</b> ${word.back}
-
                         </div>
                     `;
                 });
-
                 document.getElementById("wordList").innerHTML = html;
             });
     }
 
-    // ================= START PRACTICE =================
-
-    function startPractice() {
-
+    function startPractice(){
         fetch(`${BASE_URL}/words/user/${currentUser.id}`)
-
             .then(res => res.json())
-
             .then(data => {
-
                 practiceWords = [...data];
-
                 showScreen("practiceScreen");
-
                 nextWord();
             });
     }
 
-    // ================= NEXT WORD =================
-
-    function nextWord() {
-
+    function nextWord(){
         if (practiceWords.length === 0) {
-
             clearInterval(timerInterval);
-
             document.getElementById("card")
                 .classList.remove("flipped");
-
-            document.getElementById("cardFront").innerText =
-                "🎉 Practice Complete";
-
-            document.getElementById("cardBack").innerText =
-                "";
-
-            document.getElementById("timerBar").style.width =
-                "0%";
-
+            document.getElementById("cardFront").innerText = "🎉 Practice Complete";
+            document.getElementById("cardBack").innerText = "";
+            document.getElementById("timerBar").style.width = "0%";
             return;
         }
 
-        const randomIndex =
-            Math.floor(Math.random() * practiceWords.length);
-
-        currentWord =
-            practiceWords[randomIndex];
-
+        const randomIndex = Math.floor(Math.random() * practiceWords.length);
+        currentWord = practiceWords[randomIndex];
         document.getElementById("card")
             .classList.remove("flipped");
-
-        document.getElementById("cardFront").innerText =
-            currentWord.front;
-
-        document.getElementById("cardBack").innerText =
-            currentWord.back;
-
+        document.getElementById("cardFront").innerText = currentWord.front;
+        document.getElementById("cardBack").innerText = currentWord.back;
         startCardTimer();
     }
 
-    // ================= FLIP CARD =================
-
-    function flipCard() {
-
+    function flipCard(){
         if (!currentWord) return;
-
         document.getElementById("card")
             .classList.toggle("flipped");
     }
 
-    // ================= CORRECT =================
-
-    function markCorrect() {
-
+    function markCorrect(){
         clearInterval(timerInterval);
-
-        practiceWords =
-            practiceWords.filter(
-                word => word.id !== currentWord.id
-            );
-
+        practiceWords = practiceWords.filter(word => word.id !== currentWord.id);
         nextWord();
     }
 
-    // ================= WRONG =================
-
-    function markWrong() {
-
+    function markWrong(){
         clearInterval(timerInterval);
-
         nextWord();
     }
 
-    // ================= SKIP =================
-
-    function skipWord() {
-
+    function skipWord(){
         clearInterval(timerInterval);
-
         nextWord();
     }
 
-    // ================= END PRACTICE =================
-
-    function endPractice() {
-
+    function endPractice(){
         clearInterval(timerInterval);
-
         backHome();
-
         document.getElementById("card")
             .classList.remove("flipped");
-
-        document.getElementById("cardFront").innerText =
-            "Click Start Practice";
-
-        document.getElementById("cardBack").innerText =
-            "";
-
-        document.getElementById("timerBar").style.width =
-            "100%";
-
+        document.getElementById("cardFront").innerText = "Click Start Practice";
+        document.getElementById("cardBack").innerText = "";
+        document.getElementById("timerBar").style.width = "100%";
         currentWord = null;
     }
-
 </script>
-
 </body>
 </html>

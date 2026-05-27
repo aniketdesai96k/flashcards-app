@@ -15,49 +15,26 @@ import java.util.List;
 @RequestMapping("/words")
 @CrossOrigin(origins = "*")
 public class WordController {
-
     private final WordService wordService;
-
     private final UserRepository userRepository;
 
-    public WordController(
-            WordService wordService,
-            UserRepository userRepository) {
-
+    public WordController(WordService wordService, UserRepository userRepository) {
         this.wordService = wordService;
         this.userRepository = userRepository;
     }
 
-    // ADD WORD FOR USER
-
     @PostMapping("/{userId}")
-    public Word addWord(
-            @PathVariable Long userId,
-            @RequestBody Word word) {
-
-        User user =
-                userRepository.findById(userId).orElse(null);
-
+    public Word addWord(@PathVariable Long userId, @RequestBody Word word) {
+        User user = userRepository.findById(userId).orElse(null);
         word.setUser(user);
-
         return wordService.addWord(word);
     }
-
-    // GET ALL WORDS FOR USER
-
     @GetMapping("/user/{userId}")
-    public List<Word> getWordsByUser(
-            @PathVariable Long userId) {
-
+    public List<Word> getWordsByUser(@PathVariable Long userId) {
         return wordService.getWordsByUser(userId);
     }
-
-    // RANDOM WORD FOR USER
-
     @GetMapping("/random/{userId}")
-    public Word getRandomWord(
-            @PathVariable Long userId) {
-
+    public Word getRandomWord(@PathVariable Long userId) {
         return wordService.getRandomWord(userId);
     }
 }
