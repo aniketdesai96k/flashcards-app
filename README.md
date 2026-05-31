@@ -40,20 +40,8 @@ https://flashcards-app-jzdk.onrender.com
 - Docker
 - Render
 
-------------------
-
-## API Endpoints
-
-- POST `/users/signup`
-- POST `/users/login`
-- POST `/words`
-- GET `/words`
-- GET `/words/random`
-- DELETE `/words/{id}`
 
 -------------------
 
 ## Run Locally
-
-```bash
 ./mvnw spring-boot:run
